@@ -7,9 +7,9 @@ import (
 )
 
 type User struct {
-	Id       string `json:"id"`
-	Username string `json:"username"`
-	Password string `json:"-"`
+	Id       string `json:"id" binding:"required"`
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
 
 func createUser(c *gin.Context) {
@@ -19,7 +19,7 @@ func createUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, "Error parsing request body")
 		return
 	}
-	c.IndentedJSON(http.StatusCreated, newUser)
+	c.JSON(http.StatusCreated, newUser)
 }
 
 func main() {
