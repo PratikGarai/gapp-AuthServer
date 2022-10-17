@@ -19,8 +19,6 @@ type UserOutput struct {
 }
 
 func CreateUser(c *gin.Context) {
-	c.Writer.Header().Set("Content-Type", "application/json; charset=utf-8")
-	c.Next()
 	var userInput UserInput
 	var err = c.BindJSON(&userInput)
 	if err != nil {
