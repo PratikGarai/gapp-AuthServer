@@ -33,9 +33,10 @@ func main() {
 	}
 
 	router := gin.Default()
+	router.SetTrustedProxies(nil)
 	router.Use(middlewares.SetJsonTypeMiddleware())
 	router.POST("/register", auth.CreateUser)
 
-	fmt.Printf("Connecting to %s at PORT %d", SERVER_BIND_ADDRESS, SERVER_BIND_PORT)
+	fmt.Printf("Connecting to %s at PORT %d\n", SERVER_BIND_ADDRESS, SERVER_BIND_PORT)
 	router.Run(fmt.Sprintf("%s:%d", SERVER_BIND_ADDRESS, SERVER_BIND_PORT))
 }
