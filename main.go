@@ -8,8 +8,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
-	"TeamVapp/AuthServer/auth"
-	"TeamVapp/AuthServer/middlewares"
+	"GApp/AuthServer/auth"
+	"GApp/AuthServer/db"
+	"GApp/AuthServer/middlewares"
 )
 
 func main() {
@@ -32,6 +33,13 @@ func main() {
 		return
 	}
 
+	err = db.ConnectDb()
+	if err != nil {
+		fmt.Println("Can't connect to DB")
+		return
+	} else {
+		fmt.Println("Connected to DB")
+	}
 	router := gin.Default()
 	router.SetTrustedProxies(nil)
 	router.Use(middlewares.SetJsonTypeMiddleware())

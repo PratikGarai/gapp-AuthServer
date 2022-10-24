@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"TeamVapp/AuthServer/utils"
+	"GApp/AuthServer/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
