@@ -12,11 +12,13 @@ import (
 	"GApp/AuthServer/auth"
 	"GApp/AuthServer/db"
 	"GApp/AuthServer/middlewares"
+	"GApp/AuthServer/test"
 )
 
 func main() {
 
 	operateMode := flag.String("mode", "deploy", "mode of operation. Options : ['deploy', 'test']")
+	flag.Parse()
 	if *operateMode == "deploy" {
 		fmt.Println("Deploy Mode")
 		err := godotenv.Load(".env")
@@ -55,6 +57,12 @@ func main() {
 
 	} else if *operateMode == "test" {
 		fmt.Println("Test Mode")
+		err := godotenv.Load(".env.test")
+		if err != nil {
+			fmt.Println("Error loading .env file")
+			return
+		}
+		test.TestMain()
 	} else {
 		fmt.Println("Invalid Mode")
 	}
