@@ -42,7 +42,7 @@ func GetDbDSN() (string, error) {
 	if DB_NAME == "" {
 		return "", errors.New("no DB user provided in .env")
 	}
-	var DSN string = fmt.Sprintf("postgres://%s:%s@%s:%d/%s", DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME)
+	var DSN string = fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable", DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME)
 	return DSN, nil
 }
 
